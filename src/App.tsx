@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Variants, motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowDown,
   ArrowDownToLine,
@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -155,15 +155,15 @@ export default function Index() {
             </Button>
           </nav>
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-            <SheetTrigger asChild>
-              <Button
-                className="mobile-menu"
-                variant="ghost"
-                size="icon"
-                aria-label="Abrir menú"
-              >
-                <Menu />
-              </Button>
+            <SheetTrigger
+              className={buttonVariants({
+                variant: "ghost",
+                size: "icon",
+                className: "mobile-menu",
+              })}
+              aria-label="Abrir menú"
+            >
+              <Menu />
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
@@ -220,10 +220,6 @@ export default function Index() {
               variants={fadeUp}
               className="hero-copy"
             >
-              {/*
-              <Badge variant="secondary" className="hero-badge">
-                Cuidar desde el primer día
-              </Badge>*/}
               <h1>
                 Lactancia
                 <br />
@@ -323,7 +319,7 @@ export default function Index() {
             >
               <Accordion
                 type="single"
-                collapsible
+                collapsible="true"
                 className="nutrient-accordion"
               >
                 {nutrients.map(([title, subtitle, text, Icon], i) => (
@@ -411,30 +407,17 @@ export default function Index() {
           >
             <Tabs defaultValue="bebe" className="w-full">
               <div className="flex justify-center sm:justify-start mb-8">
-                {/* CONTENEDOR: Fondo principal (azul) */}
                 <TabsList className="inline-flex h-auto p-1.5 bg-primary rounded-2xl gap-1">
                   <TabsTrigger
                     value="bebe"
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all
-          /* 1. INACTIVO: Texto blanco translúcido, sin fondo */
-          text-white/70 bg-transparent 
-          /* 2. HOVER: Al pasar el mouse se ilumina un poco */
-          hover:text-white hover:bg-white/10 
-          /* 3. ACTIVO: Fondo blanco sólido, texto azul, sombra y ligero aumento de tamaño */
-          data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md data-[state=active]:scale-[1.02]"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all text-white/70 bg-transparent hover:text-white hover:bg-white/10 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md data-[state=active]:scale-[1.02]"
                   >
                     <Baby size={19} /> Para el bebé
                   </TabsTrigger>
 
                   <TabsTrigger
                     value="madre"
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all
-          /* 1. INACTIVO */
-          text-white/70 bg-transparent 
-          /* 2. HOVER */
-          hover:text-white hover:bg-white/10 
-          /* 3. ACTIVO */
-          data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md data-[state=active]:scale-[1.02]"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all text-white/70 bg-transparent hover:text-white hover:bg-white/10 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md data-[state=active]:scale-[1.02]"
                   >
                     <Heart size={19} /> Para la madre
                   </TabsTrigger>
@@ -445,11 +428,8 @@ export default function Index() {
                   <TabsContent value={key} key={key}>
                     <motion.div
                       initial="hidden"
-
                       animate="visible"
-
                       variants={staggerContainer}
-
                       className="benefit-grid"
                     >
                       {benefits[key].map(([title, text], index) => (
@@ -475,7 +455,6 @@ export default function Index() {
                   </TabsContent>
                 ),
               )}
-              {/* ... resto del código (TabsContent) queda igual ... */}
             </Tabs>
           </motion.div>
         </section>
