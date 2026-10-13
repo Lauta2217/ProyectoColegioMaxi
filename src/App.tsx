@@ -12,25 +12,25 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button, buttonVariants } from "./components/ui/button";
+import { Badge } from "./components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
+} from "./components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
+import { Separator } from "./components/ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import hero from "@/assets/lactancia.jpg";
+} from "./components/ui/sheet";
+import hero from "./assets/lactancia.jpg";
 import logo from "../public/favicon.jpeg";
 import brochure from "./assets/Folleto.pdf";
 
