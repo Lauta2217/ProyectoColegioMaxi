@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowDownToLine,
@@ -111,12 +111,12 @@ const navLinks = [
 ] as const;
 
 // Variantes de animación reutilizables
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
