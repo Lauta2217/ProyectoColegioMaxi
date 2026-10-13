@@ -1,0 +1,782 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.375rem;
+  --background: #ffe5f0;
+  --foreground: oklch(0.3 0.025 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.46 0.075 244);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.51 0.018 255);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.92 0.01 250);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+:root {
+  --font-body: "DM Sans", sans-serif;
+  --surface-soft: oklch(0.975 0.006 244);
+  --surface-blue: oklch(0.95 0.016 238);
+  --surface-pink: oklch(0.97 0.014 6);
+  --rose: oklch(0.69 0.12 5);
+  --hero-overlay: linear-gradient(
+    90deg,
+    oklch(0.97 0.003 250 / 0.96) 0%,
+    oklch(0.97 0.003 250 / 0.85) 27%,
+    oklch(0.97 0.003 250 / 0.1) 57%,
+    transparent 72%
+  );
+}
+@theme inline {
+  --font-sans: var(--font-body);
+}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+  }
+  body {
+    font-family: var(--font-body);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0;
+  }
+  a {
+    text-decoration: none;
+  }
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+  button,
+  a,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+  ::selection {
+    background: var(--surface-blue);
+  }
+}
+.page-width {
+  width: min(1120px, calc(100% - 96px));
+  margin-inline: auto;
+}
+.institution-bar {
+  background: var(--surface-blue);
+  color: var(--primary);
+  font-size: 11px;
+}
+.institution-bar > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+}
+.site-header {
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand img {
+  object-fit: contain;
+}
+.brand > span {
+  font-size: 21px;
+  font-weight: 650;
+}
+.brand small {
+  display: block;
+  margin-top: 3px;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 31px;
+  font-size: 13px;
+}
+.main-nav > a {
+  color: var(--muted-foreground);
+  transition: color 0.2s;
+}
+.main-nav > a:hover {
+  color: var(--primary);
+}
+.main-nav .border {
+  border-color: var(--border);
+  font-size: 12px;
+  height: 38px;
+}
+.mobile-menu {
+  display: none;
+}
+.hero {
+  position: relative;
+  height: 550px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+.hero-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+}
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+}
+.hero-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.hero-copy {
+  padding-bottom: 12px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  font-weight: 650;
+  color: var(--primary);
+}
+.eyebrow > span {
+  width: 6px;
+  height: 6px;
+  background: var(--rose);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-size: 66px;
+  font-weight: 550;
+  line-height: 1.07;
+  margin: 23px 0 20px;
+}
+.hero h1 span {
+  color: var(--rose);
+}
+.hero-subtitle {
+  font-size: 22px;
+  font-weight: 450;
+}
+.hero-description {
+  margin: 16px 0 27px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.hero .h-10 {
+  height: 43px;
+  font-size: 12px;
+  padding-inline: 23px;
+  box-shadow: none;
+}
+.hero-caption {
+  position: absolute;
+  right: 48px;
+  bottom: 21px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--foreground);
+  background: var(--background);
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+.hero-caption svg {
+  color: var(--rose);
+}
+.section-space {
+  padding-block: 76px;
+}
+h2 {
+  font-size: 34px;
+  line-height: 1.23;
+  font-weight: 500;
+  margin-top: 16px;
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1.28fr;
+  gap: 80px;
+}
+.intro-text {
+  padding-top: 7px;
+}
+.intro-text p,
+.section-heading > p,
+.benefit-grid p,
+.care-grid p,
+.support p {
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 1.9;
+}
+.intro-text p + p {
+  margin-top: 16px;
+}
+.intro-text strong {
+  color: var(--foreground);
+  font-weight: 550;
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 550;
+}
+.intro .text-link {
+  margin-top: 23px;
+}
+.milk-section {
+  background: var(--surface-soft);
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 36px;
+}
+.section-heading > p {
+  max-width: 320px;
+  padding-bottom: 3px;
+}
+.nutrient-accordion {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.nutrient-accordion [data-slot="accordion-item"] {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+  padding-inline: 19px;
+}
+.nutrient-accordion [data-slot="accordion-item"]:last-child {
+  border-bottom: 1px solid var(--border);
+}
+.nutrient-accordion [data-slot="accordion-trigger"] {
+  padding-block: 24px;
+  font-size: 14px;
+}
+.nutrient-accordion [data-slot="accordion-trigger"]:hover {
+  text-decoration: none;
+}
+.nutrient-head {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+.nutrient-icon {
+  color: var(--primary);
+  display: flex;
+  flex-shrink: 0;
+}
+.nutrient-head strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 550;
+}
+.nutrient-head small {
+  display: block;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  margin-top: 5px;
+  font-weight: 400;
+}
+.nutrient-accordion [data-slot="accordion-content"] p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.colostrum-card {
+  margin-top: 32px;
+  background: var(--surface-pink);
+  border-left: 3px solid var(--rose);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.colostrum-badge {
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+.colostrum-badge svg {
+  color: var(--rose);
+}
+.colostrum-card h3 {
+  font-size: 17px;
+  font-weight: 550;
+  margin-top: 12px;
+}
+.colostrum-card p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.benefit-tabslist {
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  gap: 24px;
+  padding: 0;
+  height: auto;
+  width: 100%;
+  justify-content: flex-start;
+}
+.benefit-tabslist [data-slot="tabs-trigger"] {
+  border-radius: 0;
+  height: 48px;
+  padding: 0 4px;
+  color: var(--muted-foreground);
+  border-bottom: 2px solid transparent;
+  font-size: 13px;
+  box-shadow: none;
+  background: transparent;
+}
+.benefit-tabslist [data-slot="tabs-trigger"][data-state="active"] {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: transparent;
+  box-shadow: none;
+}
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-top: 30px;
+}
+.benefit-card {
+  box-shadow: none;
+}
+.benefit-number {
+  color: var(--rose);
+  font-size: 12px;
+}
+.benefit-card h3 {
+  font-size: 17px;
+  font-weight: 550;
+  margin-top: 12px;
+}
+.benefit-card p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted-foreground);
+}
+.care-band {
+  background: var(--surface-blue);
+  padding-block: 60px;
+}
+.care-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.care-card {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.care-card [data-slot="card-content"] {
+  padding: 0;
+}
+.care-icon {
+  color: var(--primary);
+  display: block;
+  margin-bottom: 21px;
+}
+.care-card h2 {
+  font-size: 28px;
+  margin-top: 13px;
+}
+.care-card p {
+  margin-top: 17px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted-foreground);
+}
+.hero-badge {
+  font-size: 10px;
+  font-weight: 650;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--surface-blue);
+}
+.sheet-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  font-size: 14px;
+}
+.sheet-nav > a {
+  color: var(--muted-foreground);
+}
+.sheet-nav > a:hover {
+  color: var(--primary);
+}
+.support {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.support h2 {
+  font-size: 30px;
+}
+.support p {
+  margin-top: 15px;
+}
+.support .border {
+  height: 44px;
+  font-size: 12px;
+  box-shadow: none;
+}
+footer {
+  border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding-block: 27px;
+}
+.footer-top .brand > span {
+  font-size: 17px;
+}
+.footer-top > span {
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.disclaimer {
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  padding-block: 17px 25px;
+  border-top: 1px solid var(--border);
+}
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 5px;
+}
+@media (min-width: 1600px) {
+  .hero-photo {
+    object-position: center 45%;
+  }
+}
+@media (max-width: 900px) {
+  .page-width {
+    width: calc(100% - 48px);
+  }
+  .main-nav {
+    gap: 18px;
+  }
+  .hero {
+    height: 510px;
+  }
+  .hero h1 {
+    font-size: 56px;
+  }
+  .intro {
+    gap: 35px;
+  }
+  .nutrient-accordion {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-top > span {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .page-width {
+    width: calc(100% - 40px);
+  }
+  .institution-bar {
+    font-size: 9px;
+  }
+  .institution-bar > div > span:last-child {
+    display: none;
+  }
+  .header-inner {
+    height: 76px;
+  }
+  .brand img {
+    width: 48px;
+    height: 48px;
+  }
+  .brand > span {
+    font-size: 19px;
+  }
+  .mobile-menu {
+    display: inline-flex;
+  }
+  .main-nav {
+    display: none;
+  }
+  .hero {
+    height: 580px;
+  }
+  .hero-photo {
+    object-position: 65% center;
+  }
+  .hero-shade {
+    background: linear-gradient(
+      90deg,
+      oklch(0.97 0.003 250 / 0.93),
+      oklch(0.97 0.003 250 / 0.72) 48%,
+      oklch(0.97 0.003 250 / 0.05)
+    );
+  }
+  .hero-inner {
+    align-items: flex-start;
+    padding-top: 70px;
+  }
+  .hero h1 {
+    font-size: 50px;
+    margin-top: 24px;
+  }
+  .hero-subtitle {
+    font-size: 18px;
+  }
+  .hero-description {
+    max-width: 245px;
+    font-size: 13px;
+  }
+  .hero-caption {
+    right: 20px;
+    left: 20px;
+    bottom: 18px;
+    width: fit-content;
+    font-size: 10px;
+  }
+  .desktop-break {
+    display: none;
+  }
+  .section-space {
+    padding-block: 48px;
+  }
+  h2 {
+    font-size: 29px;
+  }
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 23px;
+  }
+  .intro h2 br {
+    display: none;
+  }
+  .section-heading {
+    display: block;
+    margin-bottom: 27px;
+  }
+  .section-heading > p {
+    margin-top: 20px;
+  }
+  .nutrient-accordion {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .colostrum-card h3 {
+    line-height: 1.5;
+  }
+  .benefit-grid {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+  .care-band {
+    padding-block: 44px;
+  }
+  .care-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .care-grid h2 {
+    font-size: 26px;
+  }
+  .support {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .support h2 {
+    font-size: 27px;
+  }
+  .footer-top {
+    gap: 15px;
+  }
+  .footer-top .text-link {
+    font-size: 10px;
+    gap: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
