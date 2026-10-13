@@ -143,16 +143,17 @@ export default function Index() {
                 {label}
               </a>
             ))}
-            <Button variant="outline" asChild>
-              <a
-                href={brochure}
-                className="flex items-center gap-2"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver folleto <ArrowUpRight className="h-4 w-4 shrink-0" />
-              </a>
-            </Button>
+            <a
+              href={brochure}
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({
+                variant: "outline",
+                className: "flex items-center gap-2",
+              })}
+            >
+              Ver folleto <ArrowUpRight className="h-4 w-4 shrink-0" />
+            </a>
           </nav>
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger
@@ -184,16 +185,17 @@ export default function Index() {
                     {label}
                   </a>
                 ))}
-                <Button variant="outline" asChild>
-                  <a
-                    href={brochure}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    Ver folleto <ArrowUpRight className="h-4 w-4 shrink-0" />
-                  </a>
-                </Button>
+                <a
+                  href={brochure}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={buttonVariants({
+                    variant: "outline",
+                    className: "flex items-center justify-center gap-2 w-full",
+                  })}
+                >
+                  Ver folleto <ArrowUpRight className="h-4 w-4 shrink-0" />
+                </a>
               </nav>
             </SheetContent>
           </Sheet>
@@ -231,11 +233,15 @@ export default function Index() {
                 <br className="desktop-break" /> Porque cuidar también es estar
                 cerca.
               </p>
-              <Button size="lg" asChild>
-                <a href="#lactancia" className="inline-flex items-center gap-2">
-                  Conocer más <ArrowDown className="h-4 w-4 shrink-0" />
-                </a>
-              </Button>
+              <a
+                href="#lactancia"
+                className={buttonVariants({
+                  size: "lg",
+                  className: "inline-flex items-center gap-2",
+                })}
+              >
+                Conocer más <ArrowDown className="h-4 w-4 shrink-0" />
+              </a>
             </motion.div>
           </div>
           <motion.div
@@ -317,11 +323,7 @@ export default function Index() {
               viewport={{ once: true, margin: "-50px" }}
               variants={staggerContainer}
             >
-              <Accordion
-                type="single"
-                collapsible="true"
-                className="nutrient-accordion"
-              >
+              <Accordion collapsible="true" className="nutrient-accordion">
                 {nutrients.map(([title, subtitle, text, Icon], i) => (
                   <motion.div variants={fadeUp} key={title}>
                     <AccordionItem value={`nutrient-${i}`}>
@@ -521,17 +523,19 @@ export default function Index() {
               también importa.
             </p>
           </div>
-          <Button variant="outline" size="lg" asChild>
-            <a
-              href={brochure}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2"
-            >
-              <ArrowDownToLine className="h-4 w-4 shrink-0" /> Consultar el
-              folleto
-            </a>
-          </Button>
+          <a
+            href={brochure}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({
+              variant: "outline",
+              size: "lg",
+              className: "inline-flex items-center gap-2",
+            })}
+          >
+            <ArrowDownToLine className="h-4 w-4 shrink-0" /> Consultar el
+            folleto
+          </a>
         </motion.section>
       </main>
 
