@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import { Button, buttonVariants } from "./components/ui/button";
+import { buttonVariants } from "./components/ui/button";
 import { Badge } from "./components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import {
@@ -110,7 +110,6 @@ const navLinks = [
   ["Beneficios", "beneficios"],
 ] as const;
 
-// Variantes de animación reutilizables
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -323,7 +322,7 @@ export default function Index() {
               viewport={{ once: true, margin: "-50px" }}
               variants={staggerContainer}
             >
-              <Accordion collapsible="true" className="nutrient-accordion">
+              <Accordion className="nutrient-accordion">
                 {nutrients.map(([title, subtitle, text, Icon], i) => (
                   <motion.div variants={fadeUp} key={title}>
                     <AccordionItem value={`nutrient-${i}`}>
